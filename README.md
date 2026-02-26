@@ -1,15 +1,29 @@
-# Survive Invest — Web (SvelteKit)
+# Survive Invest (EOD-only) — Multi-watchlist survivability dashboard
 
-This is a minimal dashboard UI for the Worker API.
+This repo contains:
+- `worker/`: Cloudflare Worker API with D1 (EOD-only)
+- `web/`: Minimal SvelteKit dashboard calling the Worker API
 
-## Configure API
-Edit `src/lib/api.js` and set:
-- `API_BASE` = your Worker URL
-- `USER_ID` = any string (later map to Telegram user_id)
+## Quick start (Worker)
+```bash
+cd worker
+npm i -g wrangler
+wrangler login
+wrangler d1 create survive_invest
+# paste database_id into worker/wrangler.toml
+wrangler d1 migrations apply survive_invest
+wrangler dev
+```
 
-## Run locally
+## Quick start (Web)
+1) Set `API_BASE` in `web/src/lib/api.js` to your Worker URL.
+2) Run:
 ```bash
 cd web
 npm i
 npm run dev
 ```
+
+## Notes
+- MVP auth uses `X-User-Id` header. Later you can map it to Telegram user_id.
+- EOD prices are ingested via `POST /api/eod/ingest`.

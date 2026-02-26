@@ -1,0 +1,21 @@
+name = "survive-invest-api"
+main = "src/worker.js"
+compatibility_date = "2026-02-26"
+
+# ---- Bindings ----
+# After creating D1:
+#   wrangler d1 create survive_invest
+# Paste the returned database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "survive_invest"
+database_id = "PASTE_YOUR_D1_DATABASE_ID"
+
+# Optional KV (not required for MVP)
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "PASTE_YOUR_KV_ID"
+
+[vars]
+TZ = "Asia/Ho_Chi_Minh"
+REQUIRED_INTEREST_BUFFER_MONTHS = "12"
