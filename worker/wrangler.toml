@@ -9,7 +9,7 @@ compatibility_date = "2026-02-26"
 [[d1_databases]]
 binding = "DB"
 database_name = "survive_invest"
-database_id = "PASTE_YOUR_D1_DATABASE_ID"
+database_id = "932c2c14-197e-4cdb-8f7b-e3e42bbdee2d"
 
 # Optional KV (not required for MVP)
 # [[kv_namespaces]]
