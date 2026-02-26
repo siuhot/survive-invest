@@ -1,4 +1,4 @@
-export const API_BASE = "https://YOUR_WORKER_DOMAIN";
+export const API_BASE = "https://survive-invest.itstarsec.workers.dev/";
 export const USER_ID = "123";
 
 export async function apiGet(path) {
