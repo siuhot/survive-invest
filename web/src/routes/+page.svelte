@@ -129,6 +129,51 @@
 </div>
 
 <div class="card" style="margin-top:16px;">
+  <div class="h">Plans (Ladder + Stop)</div>
+
+  {#if loading}
+    <div class="p">Loading...</div>
+  {:else if data}
+    {#if !data.plans || data.plans.length === 0}
+      <div class="p">Chưa có plan. Dùng API: <code>/api/plan/set</code></div>
+    {:else}
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Ladder</th>
+            <th>Stop</th>
+            <th>Max weight</th>
+            <th>Risk</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each data.plans as pl}
+            <tr>
+              <td><strong>{pl.symbol}</strong></td>
+              <td>
+                {#if pl.ladder?.levels?.length}
+                  {#each pl.ladder.levels as lv, i}
+                    <div class="p">B{i+1}: {lv.price} ({Math.round(lv.weight*100)}%)</div>
+                  {/each}
+                {:else}
+                  -
+                {/if}
+              </td>
+              <td>{pl.stop?.stop_total ?? "-"}</td>
+              <td>{pl.max_weight ?? "-"}</td>
+              <td>{pl.risk_per_trade ?? "-"}</td>
+              <td>{pl.updated_at ?? "-"}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    {/if}
+  {/if}
+</div>
+
+<div class="card" style="margin-top:16px;">
   <div class="h">Positions</div>
   {#if loading}
     <div class="p">Loading...</div>
